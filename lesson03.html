@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>lesson03</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // 用户登录才能获得用户信息
+		let status =1;
+          let login = (resolve,reject)=>{
+          	setTimeout(()=>{
+          		if(status == 1){
+          			resolve({data:"sucess",meg:"yyy",token:"asd"});
+          		}else{
+          			reject('fail')
+          		}
+          	},2000)
+          }
+
+            let info = (resolve,reject)=>{
+          	setTimeout(()=>{
+          		if(status == 1){
+          			resolve({data:"Usersucess",meg:"useryyy",token:"asd"})
+          		}else{
+          			reject('userfail')
+          		}
+          	},1000)
+          }
+
+          new Promise(login).then(res=>{
+          	console.log(res)
+          	return new Promise(info)
+          }).then(res=>{
+          	console.log(res)
+          })
+
+
+</script>
+</html>

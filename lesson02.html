@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>lesson02</title>
+</head>
+<body>
+  
+</body>
+<script>
+	// let a = 1;
+ //     let promise = new Promise(function(resolve,reject){
+ //          if(a==10){
+ //               resolve('sucess')
+ //          }else{
+ //               reject("fail")
+ //          }
+ //     })
+ //     promise.then(res=>{
+ //          console.log(res)
+ //     }).catch(rej=>{
+ //          console.log(rej);
+ //     })
+
+          let p1 = Promise.resolve('111')
+          let p2 = Promise.resolve('222')
+          let p3 = Promise.resolve('333')
+          Promise.all([p1,p2,p3]).then(res=>{
+               let [p1,p2,p3] = res
+               console.log(p1,p2,p3)
+          })
+
+
+</script>
+</html>

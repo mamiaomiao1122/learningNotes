@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>lesson01</title>
+</head>
+<body>
+  
+</body>
+<script>
+	// forEach
+
+	// let arr = ['apple','banana'];
+ 	//    arr.forEach(function(val, index, arr){
+ 	//        console.log(val, index, arr);
+ 	//    });
+
+
+
+ 	// map 正常情况下，需要配合return，返回是一个新的数组
+  //   若是没有return，相当于forEach
+  //   注意：平时只要用map，一定是要有return    
+  //   重新整理数据结构:
+  //       [{title:'aaa'}]   ->  [{t:'aaaa'}]
+
+     // let arr = [
+     //        {title:'aaaaa', read:100, hot:true},
+     //        {title:'bbbb', read:100, hot:true},
+     //        {title:'cccc', read:100, hot:true},
+     //        {title:'dddd', read:100, hot:true}
+     //    ];        
+     //    let newArr = arr.map((item, index, arr)=>{
+     //        let json={}
+     //        json.t = `^_^${item.title}-----`;
+     //        json.r = item.read+200;
+     //        json.hot = item.hot == true && '真棒!!!';
+     //        return json;
+     //    });
+     //    console.log(newArr);
+
+     //过滤
+      // let newArr = arr.filter((item, index, arr)=>{
+      //       return item.hot==false;
+      //   }); 
+
+     // 复制
+     let json = {
+     	0:'apple',
+     	1:'banana',
+     	2:'orange',
+     	length:3
+     }
+     let arr = Array.from(json)
+     console.log(arr)
+
+</script>
+</html>
