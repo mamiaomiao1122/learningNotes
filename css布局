@@ -1,0 +1,21 @@
+
+css布局
+
+1、实现两栏三栏布局
+表格布局、float+margin、inline-block布局、flexbox布局
+
+2、position：absolute/fixed有什么区别？  脱离文档流的  z-index:2 层级
+前者相对最近的absolute/relative，后者相对屏幕（viewport）
+
+3、display：inline-block的间隙（font-size、空格注释）
+原因：字符间距、解决：消灭字符或者消灭间距
+
+4、清除浮动
+伪类+clear：both、overflow：hidden（auto）、让盒子负责自己的布局
+
+5、如何适配移动端页面
+viewport、rem/viewport/media、设计上：隐藏 折行 自适应
+
+
+响应式设计和布局
+方法：隐藏+折行+自适应空间 （左定 右适应）
