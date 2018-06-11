@@ -1,0 +1,19 @@
+
+变量类型
+	值类型/引用类型
+变量计算
+
+
+
+
+如何理解json
+ json是一个js对象
+ 	JSON.stringify({a:10,b:20})  对象变字符串
+ 	JSON.parse('{"a":10,"b":20}‘)  字符串变对象
+
+
+
+
+
+html css
+css reset
