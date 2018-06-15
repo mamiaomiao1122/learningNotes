@@ -121,8 +121,6 @@ function arrSplit(arr,arr1,arr2){       //封装一个对偶数位数组进行�
 
 
 
-
-
 说明：使用document.write()创建HTML标签并添加class；通过递归方法成一个9*9乘法表；再使用css给乘法表添加样式，使其变成等腰三角形。（关于边框重叠的问题，可以通过设置margin为负值来消除）
 
 JavaScript代码：
