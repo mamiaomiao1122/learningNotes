@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>lesson02</title>
+<script type="text/javascript" src="./mamiao.js"></script>
+</head>
+<body>
+  
+</body>
+<script>
+	function getUrlParam(sUrl, sKey) {
+    var obj = {};
+    var index = sUrl.indexOf('?');
+    if(index==-1) {
+        if(sKey==undefined){
+            return obj;
+        }else{
+            return "";
+        }
+    }
+    var queryString = (sUrl.split("?")[1]).split("#")[0];
+    var query = queryString.split('&');
+    for(var i=0;i<query.length;i++){
+        var keyValue = query[i].split("=");
+        var key = keyValue[0];
+        var value = keyValue[1];
+        //console.log('key: '+key+" value: "+value);
+        if(value ==""){
+            continue;
+        }
+        if(obj.hasOwnProperty(key)){
+            if(Array.isArray(obj[key])){
+                obj[key].push(value);
+            }else{
+                var val = obj[key];
+                obj[key] = [];
+                obj[key].push(val);
+                obj[key].push(value);
+            }
+ 
+        }else{
+            obj[key]=value;
+        }
+ 
+    }
+    //console.log(obj)
+    if(sKey){
+        return obj[sKey]?obj[sKey]:"";
+    }else{
+        return obj;
+ 
+    }
+}
+   console.log(getUrlParam("http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe","key"))
+
+</script>
+</html>
