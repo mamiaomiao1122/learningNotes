@@ -1,0 +1,100 @@
+
+//
+在数组 arr 末尾添加元素 item。不要直接修改数组 arr，结果返回新的数组
+/**
+ * 普通的迭代拷贝
+ * @param arr
+ * @param item
+ * @returns {Array}
+ */
+var append = function(arr, item) {
+    var length = arr.length,
+        newArr = [];
+ 
+    for (var i = 0; i < length; i++) {
+        newArr.push(arr[i]);
+    }
+ 
+    newArr.push(item);
+ 
+    return newArr;
+};
+/**
+ * 使用slice浅拷贝+push组合
+ * @param arr
+ * @param item
+ * @returns {Blob|ArrayBuffer|Array.<T>|string}
+ */
+var append2 = function(arr, item) {
+    var newArr = arr.slice(0);  // slice(start, end)浅拷贝数组
+    newArr.push(item);
+    return newArr;
+};
+ 
+/**
+ * 使用concat将传入的数组或非数组值与原数组合并,组成一个新的数组并返回
+ * @param arr
+ * @param item
+ * @returns {Array.<T>|string}
+ */
+var append3 = function(arr, item) {
+    return arr.concat(item);
+};
+
+
+
+找出数组 arr 中重复出现过的元素
+
+function duplicates(arr) {
+    var a=[];
+    for(var i=0;i<arr.length-1;i++){
+        for(var j=i+1;j<arr.length;j++){
+            if(arr[i]==arr[j]&&a.indexOf(i)==-1){
+                a.push(arr[i])
+            }
+        }
+    }
+    return a;
+}
+
+实现一个打点计时器，要求
+1、从 start 到 end（包含 start 和 end），每隔 100 毫秒 console.log 一个数字，每次数字增幅为 1
+2、返回的对象中需要包含一个 cancel 方法，用于停止定时操作
+3、第一个数需要立即输出
+function count(start, end) {
+    console.log(start++);
+    var timer = setInterval(function(){
+        if(start<=end){
+            console.log(start++);
+        }else{
+            clearInterval(timer);
+        }
+        
+    },100);
+    return{
+        cancel:function(){
+            clearInterval(timer);
+        }
+    }
+}
+实现函数 partialUsingArguments，调用之后满足如下条件：
+1、返回一个函数 result
+2、调用 result 之后，返回的结果与调用函数 fn 的结果一致
+3、fn 的调用参数为 partialUsingArguments 的第一个参数之后的全部参数以及 result 的调用参数
+
+function partialUsingArguments(fn) {
+    
+    var a1 = Array.prototype.slice.call(arguments,1)
+    
+    var result = function(){
+        var b = a1.concat(Array.prototype.slice.call(arguments,0));
+        return fn.apply(this,b);
+    }
+    return result;
+}
+
+
+
+
+
+
