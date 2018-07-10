@@ -541,28 +541,6 @@ function show_add_template( data_item ) {
                 return (/^([1-9]|[1-9]\d|1\d{2}|2[0-1]\d|22[0-3])(\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])){3}$/.test(val))
             },
             validipText:'IP输入有误',
-
-            daterange: function(val, field) { // 调用 daterange   
-                    var date = field.parseDate(val);  
-   					// console.log(field)
-                    if (!date) {  
-                        return false;  
-                    }  
-                    if (field.startDateField && (!this.dateRangeMax || (date.getTime() != this.dateRangeMax.getTime()))) {  
-                        var start = field.up('form').down('#' + field.startDateField);  
-                        start.setMaxValue(date);  
-                        start.validate();  
-                        this.dateRangeMax = date;  
-                    }  
-                    else if (field.endDateField && (!this.dateRangeMin || (date.getTime() != this.dateRangeMin.getTime()))) {  
-                        var end = field.up('form').down('#' + field.endDateField);  
-                        end.setMinValue(date);  
-                        end.validate();  
-                        this.dateRangeMin = date;  
-                    }  
-                    return true;  
-                },
-            daterangeText: '开始日期必须小于结束日期'
 			// vtype Mask 属性: 按键过滤器
 			// illgalchartMask: /[\d\s:amp]/i
 		});
@@ -756,50 +734,29 @@ function show_add_template( data_item ) {
                                 margin: " 5 10 5 10",
                                 width: 80,
                                 listeners: {
-                                    change: {
-                                        fn: function( me, newValue, oldValue ) {
-                                            var start_date = Ext.getCmp( "start_date" );
-                                            var start_time = Ext.getCmp( "start_time" );
-                                            var end_date = Ext.getCmp( "end_date" );
-                                            var end_time = Ext.getCmp( "end_time" );
-                                            if ( newValue ) {
-                                                start_date.enable();
-                                                start_time.enable();
-                                                end_date.enable();
-                                                end_time.enable();
-                                            } else {
-                                                start_date.disable();
-                                                start_time.disable();
-                                                end_date.disable();
-                                                end_time.disable();
-                                            }
-                                        }
-                                    }
+                      
                                 }
                             }, {
                                 xtype: 'datefield',
+                                // vtype: 'daterange',
+                                // allowBlank: false,  
+                                // blankText: blank_text,
                                 id: "start_date",
                                 name: 'start_date',
-                                allowBlank : false,
                                 fieldLabel: '开始时间',
                                 format: "Y-m-d",
+                                startDateField : 'start_date',
                                 disabled: true,
-                                editable:false,
                                 labelWidth: 60,
-                                width: 200,
-                                vtype:'daterange',
-                                endDateField:'end_date'
-                                
+                                width: 200
                             }, {
                                 xtype: 'timefield',
                                 id: 'start_time',
                                 name: 'start_time',
                                 format: "H:i:s",
                                 disabled: true,
-                                editable:false,
-                                 // readOnly : true,
                                 width: 100,
-                                margin: "0 10 0 10",
+                                margin: "0 10 0 10"
                             }]
                         }, {
                             xtype: "container",
@@ -807,35 +764,28 @@ function show_add_template( data_item ) {
                             items: [ {
                                 xtype: "label",
                                 margin: " 5 10 5 10",
-                                width: 80,
+                                width: 80
                             }, {
                                 xtype: 'datefield',
                                 id: 'end_date',
                                 name: 'end_date',
-                                allowBlank : false,
                                 fieldLabel: '结束时间',
                                 format: "Y-m-d",
                                 disabled: true,
-                                editable:false,
+                                endDateField : 'end_date',
+                                // minValue:'start_time',
                                 labelWidth: 60,
                                 width: 200,
-                                vtype:'daterange',
-                                startDateField: 'start_date',
-                                listeners:{  
-                                                                                     
-                                        }  
+                                listeners:{
+                            }
                             }, {
                                 xtype: 'timefield',
                                 id: 'end_time',
                                 name: 'end_time',
                                 format: "H:i:s",
                                 disabled: true,
-                                editable:false,
                                 width: 100,
-                                margin: "0 10 0 10",
-                                listeners:{
-                               
-                                }
+                                margin: "0 10 0 10"
                             }]
                         }]
                     }]
@@ -1323,6 +1273,9 @@ function load_data_into_template_add( add_window, data_item ) {
         if ( time.match( regx ) ) {
             var time_choice = RegExp.$1 + "N";
             var time_n = RegExp.$2;
+            console.log(time_choice);
+            console.log(time_n);
+
             Ext.getCmp( "time_range_choice" ).setValue( time_choice );
             Ext.getCmp( "recent_n_value" ).setValue( time_n );
         }
